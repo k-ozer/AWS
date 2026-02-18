@@ -1,1 +1,44 @@
+Assignment 1 – EC2 Web Server Deployment
 
+What I Built:
+
+I deployed a web server on an Amazon EC2 instance inside a custom VPC.
+
+The setup included:
+
+- Custom VPC
+- Public subnet
+- Internet Gateway
+- Route table with internet access (0.0.0.0/0 → IGW)
+- One EC2 instance (Amazon Linux)
+- Security Group allowing HTTP (port 80)
+- Web server installed using user data
+
+The EC2 instance successfully served a web page when accessed via its public IP address.
+
+What I Learned:
+
+- How VPC networking works (subnets, route tables, Internet Gateway).
+- Difference between public and private subnets.
+- How security groups control inbound and outbound traffic.
+- How to automate EC2 configuration using user data scripts.
+- How traffic flows from the internet to an EC2 instance.
+- This assignment strengthened my understanding of AWS networking fundamentals.
+
+Challenges & Solutions:
+
+1. Website not loading.
+Cause: Port 80 not allowed in Security Group.
+Fix: Added HTTP (80) inbound rule from 0.0.0.0/0
+
+2. No internet connectivity.
+Cause: Missing route to Internet Gateway.
+Fix: Added 0.0.0.0/0 route and associated route table with subnet.
+
+3. User data script not working.
+Cause: Incorrect setup commands.
+Fix: Corrected script to install and start Apache automatically.
+
+Outcome:
+Successfully deployed a working EC2 web server with proper networking and security configuration. 
+This forms the foundation for more advanced AWS architectures like Load Balancers and Auto Scaling.
