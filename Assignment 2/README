@@ -1,1 +1,56 @@
+Assignment 2 – Application Load Balancer (ALB)
 
+What I Built:
+
+I deployed a highly available web application architecture using an Application Load Balancer (ALB) in front of two EC2 instances.
+
+The setup included:
+
+- Custom VPC
+- Two public subnets (for ALB) across different Availability Zones.
+- Two private subnets (for EC2 instances) across different Availability Zones.
+- Application Load Balancer with HTTP (port 80) listener.
+- Target Group with health check configured on / .
+- Two EC2 instances running web servers via user data.
+- Security Group isolation between ALB and EC2.
+
+All incoming traffic flows:
+
+Internet → ALB → Target Group → EC2 Instances
+
+The EC2 instances are not publicly accessible.
+
+What I Learned:
+
+- How Application Load Balancers distribute traffic across multiple instances.
+- How to configure Target Groups and health checks.
+- The importance of multi-AZ deployment for high availability.
+- How to isolate resources using Security Groups.
+- How to prevent direct internet access to backend servers.
+
+I also gained a deeper understanding of secure architecture design and traffic flow within AWS.
+
+Challenges & Solutions:
+
+1. EC2 Instances Not Marked Healthy
+Cause: Health check path misconfigured
+Fix: Set health check path to / and ensured web server was running
+
+2. Direct Access to EC2 Still Possible
+Cause: Incorrect Security Group configuration
+Fix: Restricted EC2 Security Group to allow HTTP only from ALB Security Group
+
+3. Load Balancing Not Alternating
+Cause: Target group not properly attached or both instances returning identical content
+Fix: Verified instance registration and updated user data to return unique content
+
+Outcome:
+
+Successfully deployed a secure, multi-AZ architecture where:
+
+- The ALB handles all public traffic.
+- Traffic is distributed across two EC2 instances
+- Backend instances are isolated from direct internet access
+- Health checks ensure high availability
+
+This assignment strengthened my understanding of load balancing, security isolation, and production-ready cloud architecture design.
